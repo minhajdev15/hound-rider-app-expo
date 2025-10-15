@@ -1,8 +1,8 @@
-import { HelloWave } from "@/components/hello-wave";
 import MapComponent from "@/components/MapComponent";
 import PlacesInput from "@/components/PlacesInput";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { Colors } from "@/constants/theme";
 import { getPreciseDistance } from "geolib";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -48,24 +48,24 @@ export default function HomeScreen() {
       : null;
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       {/* Header */}
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Hound mobility</ThemedText>
-        <HelloWave />
-      </ThemedView>
+      <View style={styles.titleContainer}>
+        <ThemedText type="title">Hound Mobility</ThemedText>
+      </View>
 
-      {/* Input Fields */}
-      <ThemedView style={styles.inputSection}>
+      {/* Input Fields Card */}
+      <View style={styles.inputCard}>
         <PlacesInput
           onPlaceSelected={(data) => handlePlaceInput(data, "source")}
-          label="Source"
+          label="From"
         />
+        <View style={styles.divider} />
         <PlacesInput
           onPlaceSelected={(data) => handlePlaceInput(data, "destination")}
-          label="Destination"
+          label="To"
         />
-      </ThemedView>
+      </View>
 
       {/* Map container */}
       <View style={styles.mapWrapper}>
@@ -79,7 +79,7 @@ export default function HomeScreen() {
           <Text style={styles.distanceValue}>{distanceInKm} km</Text>
         </View>
       )}
-    </View>
+    </ThemedView>
   );
 }
 
@@ -87,47 +87,59 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#0d0d0d",
   },
   titleContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    marginBottom: 16,
   },
-  inputSection: {
-    gap: 20,
-    marginBottom: 30,
+  inputCard: {
+    borderRadius: 12,
+    paddingVertical: 4,
+    backgroundColor: "rgba(255,255,255,0.04)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.10)",
+    marginBottom: 12,
+    shadowColor: "transparent",
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 0,
   },
-  button: {
-    alignSelf: "center",
-    width: "60%",
-    marginBottom: 20,
+  divider: {
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    marginHorizontal: 10,
   },
   mapWrapper: {
     flex: 1,
-    borderRadius: 16,
-    overflow: "hidden",
   },
   distanceCard: {
     marginTop: 16,
-    backgroundColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(77, 189, 16, 0.08)",
     borderRadius: 16,
     paddingVertical: 16,
     paddingHorizontal: 24,
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
+    borderColor: "rgba(77, 189, 16, 0.25)",
+    shadowColor: "#000",
+    marginBottom: 74,
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
   distanceLabel: {
-    fontSize: 16,
-    color: "#ccc",
-    marginBottom: 6,
-    letterSpacing: 0.5,
+    fontSize: 14,
+    color: "#9BA1A6",
+    marginBottom: 4,
+    letterSpacing: 0.4,
   },
   distanceValue: {
-    fontSize: 26,
-    fontWeight: "bold",
-    color: "#4dbd10ff",
+    fontSize: 24,
+    fontWeight: "700",
+    color: Colors.dark.tint,
   },
 });
