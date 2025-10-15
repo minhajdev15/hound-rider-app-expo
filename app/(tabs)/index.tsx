@@ -1,7 +1,6 @@
 import { HelloWave } from "@/components/hello-wave";
 import MapComponent from "@/components/MapComponent";
 import PlacesInput from "@/components/PlacesInput";
-import { ThemedButton } from "@/components/themed-button";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { getPreciseDistance } from "geolib";
@@ -67,13 +66,6 @@ export default function HomeScreen() {
           label="Destination"
         />
       </ThemedView>
-
-      {/* Action Button */}
-      <ThemedButton
-        label="Select ride"
-        onPress={() => {}}
-        style={styles.button}
-      />
 
       {/* Map container */}
       <View style={styles.mapWrapper}>
